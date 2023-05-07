@@ -1,7 +1,7 @@
 import turtle
 
 #set up game screen
-turtle.setup(400, 300)
+turtle.setup(800, 600)
 turtle.bgcolor("black")
 screen=turtle.Screen()
 
@@ -47,13 +47,29 @@ score_display.hideturtle()
 score_display.goto(0, 260)
 score_display.write("Player 1 : 0  Player 2 : 0" , align = "center")
 
+# Function to move paddle1 up
+def paddle1_up():
+    paddle1.dy = 10
+
+# Function to move paddle1 down
+def paddle1_down():
+    paddle1.dy = -10
+
+# Function to move paddle2 up
+def paddle2_up():
+    paddle2.dy = 10
+
+# Function to move paddle2 down
+def paddle2_down():
+    paddle2.dy = -10
+
+
 turtle.listen()
 
-def up():
-  turtle.onkeypress(paddle1(up, "w"))
-  turtle.onkeypress(paddle1_down, "s")
-  turtle.onkeypress(paddle2_up, "Up")
-  turtle.onkeypress(paddle2_down, "Down")
+turtle.onkeypress(paddle1_up, "w")
+turtle.onkeypress(paddle1_down, "s")
+turtle.onkeypress(paddle2_up, "Up")
+turtle.onkeypress(paddle2_down, "Down")
 
 
 screen.onkey
@@ -95,3 +111,12 @@ elif ball.ycor() < -290:
 
 score_display.clear()
 score_display.write("Player 1: {}  Player 2: {}".format(points["player1"], points["player2"]), align="center", font=("Arial", 24, "normal"))
+
+
+# Game over screen
+game_over_display = turtle.Turtle()
+game_over_display.color("white")
+game_over_display.penup()
+game_over_display.hideturtle()
+game_over_display.goto(0, 0)
+game_over_display.write("Game Over! {} wins!".format(winner), align="center", font=("Arial", 36, "normal"))
